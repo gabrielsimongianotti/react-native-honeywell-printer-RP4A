@@ -1,4 +1,4 @@
-// import BluetoothSerial from 'react-native-bluetooth-serial';
+import BluetoothSerial from 'react-native-bluetooth-serial';
 var ZPL = "^XA ";
 /**
  * Listen for available events
@@ -59,5 +59,9 @@ const showZPL = function () {
 const deleteZPL = function () {
     ZPL = "^XA ";
     return "delete ZPL ";
+}
+const addZPL = function (codeZPL) {
+    ZPL = codeZPL;
+    return ZPL;
 }
 module.exports = { test, barCode, qrCode, block, showZPL, deleteZPL }
