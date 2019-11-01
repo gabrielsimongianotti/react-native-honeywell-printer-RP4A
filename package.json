@@ -1,0 +1,25 @@
+{
+  "name": "react-native-honeywell-printer-rp4a",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielsimongianotti/react-native-honeywell-printer-RP4A.git"
+  },
+  "author": "Gabriel Simon Gianotti",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gabrielsimongianotti/react-native-honeywell-printer-RP4A/issues"
+  },
+  "homepage": "https://github.com/gabrielsimongianotti/react-native-honeywell-printer-RP4A#readme",
+  "dependencies": {
+    "react-native-bluetooth-serial": "^1.0.0-rc1"
+  }
+}
