@@ -1,4 +1,5 @@
 import BluetoothSerial from 'react-native-bluetooth-serial';
+
 var ZPL = "^XA ";
 /**
  * Listen for available events
@@ -36,7 +37,7 @@ const qrCode = function (positionX, positionY, code) {
     return " ^FO" + positionX + "," + positionY + " ^BQN,2,10 ^FDMM, " + code + " ^FS";
 }
 /**
- * block or line
+ * Block or line
  * @param  {String} broadLeft Name of event one of connectionSuccess, connectionLost, data, rawData
  * @param  {String} broadRight Name of event one of connectionSuccess, connectionLost, data, rawData
  * @param  {String} height Name of event one of connectionSuccess, connectionLost, data, rawData
@@ -60,6 +61,9 @@ const deleteZPL = function () {
     ZPL = "^XA ";
     return "delete ZPL ";
 }
+/**
+ * Add code ZPL
+ */
 const addZPL = function (codeZPL) {
     ZPL = codeZPL;
     return ZPL;
