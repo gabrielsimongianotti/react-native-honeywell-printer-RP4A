@@ -51,21 +51,49 @@ const block = function (broadLeft, broadRight, height, heightColumn, margin) {
 /**
  * Show code ZPL
  */
-const showZPL = function () {
+const showCode = function () {
     return ZPL + " ^XZ";
 }
 /**
  * Delete code ZPL
  */
-const deleteZPL = function () {
+const deleteCode = function () {
     ZPL = "^XA ";
     return "delete ZPL ";
 }
 /**
  * Add code ZPL
  */
-const addZPL = function (codeZPL) {
+const addCode = function (codeZPL) {
     ZPL = codeZPL;
     return ZPL;
 }
-module.exports = { test, barCode, qrCode, block, showZPL, deleteZPL }
+/**
+ * printerCode
+ */
+const printerCode = async function (namePrinter) {
+    const devices = await BluetoothSerial.list();
+    // console.log(ZPL);
+    const device = devices.find(device => device.name.includes(namePrinter));
+    var answer ="erro";
+    // console.log(device);
+    BluetoothSerial.connect(device.id)
+      .then((res) => {
+        console.log(`Connected to device ${device.name}`);
+        BluetoothSerial.write(ZPL+ " ^XZ")
+          .then((res1) => console.log(res1))
+          .catch((err) => console.log(err.message));
+      }).catch((err) => console.log(err.message));
+
+      return answer;
+}
+/**
+ * bluetoothShow
+ */
+const bluetoothShow = async function () {
+    const devices = await BluetoothSerial.list();
+    const device = devices.find(device => device.name);
+    // console.log(device.name)
+    return device.name;    
+}
+module.exports = { test, barCode, qrCode, block, showCode, deleteCode, addCode, printerCode, bluetoothShow }
