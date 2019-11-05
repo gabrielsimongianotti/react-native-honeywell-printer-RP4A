@@ -3,10 +3,10 @@ import BluetoothSerial from 'react-native-bluetooth-serial';
 var ZPL = "^XA ";
 /**
  * Listen for available events
- * @param  {String} broad Name of event one of connectionSuccess, connectionLost, data, rawData
- * @param  {String} height Name of event one of connectionSuccess, connectionLost, data, rawData
+ * @param  {int} broad Name of event one of connectionSuccess, connectionLost, data, rawData
+ * @param  {int} height Name of event one of connectionSuccess, connectionLost, data, rawData
  * @param  {String} word Name of event one of connectionSuccess, connectionLost, data, rawData
- * @param  {String} size Name of event one of connectionSuccess, connectionLost, data, rawData
+ * @param  {int} size Name of event one of connectionSuccess, connectionLost, data, rawData
  */
 const test = function (broad, height, word, size) {
     ZPL += " ^CF0," + size + " ^FO" + broad + "," + height + "^FD" + word + "^FS";
@@ -15,34 +15,34 @@ const test = function (broad, height, word, size) {
 }
 /**
  * Listen for available events
- * @param  {String} broad Name of event one of connectionSuccess, connectionLost, data, rawData
- * @param  {String} height Name of event one of connectionSuccess, connectionLost, data, rawData
- * @param  {String} positionX Name of event one of connectionSuccess, connectionLost, data, rawDat
- * @param  {String} positionY Name of event one of connectionSuccess, connectionLost, data, rawData
- * @param  {String} code Name of event one of connectionSuccess, connectionLost, data, rawData
- * @param  {String} size Name of event one of connectionSuccess, connectionLost, data, rawData
+ * @param  {int} broad Name of event one of connectionSuccess, connectionLost, data, rawData
+ * @param  {int} height Name of event one of connectionSuccess, connectionLost, data, rawData
+ * @param  {int} positionX Name of event one of connectionSuccess, connectionLost, data, rawDat
+ * @param  {int} positionY Name of event one of connectionSuccess, connectionLost, data, rawData
+ * @param  {int} code Name of event one of connectionSuccess, connectionLost, data, rawData
+ * @param  {int} size Name of event one of connectionSuccess, connectionLost, data, rawData
  */
 const barCode = function (broad, height, positionX, positionY, code, size) {
-    ZPL += "^BY" + broad + ",0," + height + " ^CF0," + size + " ^FO" + positionX + "," + positionY + "^BC^FD" + code + "^FS";
-    return "^BY" + broad + ",0," + height + " ^CF0," + size + " ^FO" + positionX + "," + positionY + "^BC^FD" + code + "^FS";
+    ZPL += "^BY" + positionY + ",0," +positionX + " ^CF0," + size + " ^FO" + height + "," + broad + "^BC^FD" + code + "^FS";
+    return "^BY" + positionY + ",0," +positionX + " ^CF0," + size + " ^FO" + height + "," + broad + "^BC^FD" + code + "^FS";
 }
 /**
  * Listen for available events
- * @param  {String} positionX Name of event one of connectionSuccess, connectionLost, data, rawData
- * @param  {String} positionY Name of event one of connectionSuccess, connectionLost, data, rawData
+ * @param  {int} broad Name of event one of connectionSuccess, connectionLost, data, rawData
+ * @param  {int} height Name of event one of connectionSuccess, connectionLost, data, rawData
  * @param  {String} code Name of event one of connectionSuccess, connectionLost, data, rawData
  */
-const qrCode = function (positionX, positionY, code) {
-    ZPL += " ^FO" + positionX + "," + positionY + " ^BQN,2,10 ^FDMM, " + code + " ^FS";
-    return " ^FO" + positionX + "," + positionY + " ^BQN,2,10 ^FDMM, " + code + " ^FS";
+const qrCode = function (broad, height, code) {
+    ZPL += " ^FO" + broad + "," + height + " ^BQN,2,10 ^FDMM, " + code + " ^FS";
+    return " ^FO" + broad + "," + height + " ^BQN,2,10 ^FDMM, " + code + " ^FS";
 }
 /**
  * Block or line
- * @param  {String} broadLeft Name of event one of connectionSuccess, connectionLost, data, rawData
- * @param  {String} broadRight Name of event one of connectionSuccess, connectionLost, data, rawData
- * @param  {String} height Name of event one of connectionSuccess, connectionLost, data, rawData
- * @param  {String} heightColumn Name of event one of connectionSuccess, connectionLost, data, rawData
- * @param  {String} margin Name of event one of connectionSuccess, connectionLost, data, rawData
+ * @param  {int} broadLeft Name of event one of connectionSuccess, connectionLost, data, rawData
+ * @param  {int} broadRight Name of event one of connectionSuccess, connectionLost, data, rawData
+ * @param  {int} height Name of event one of connectionSuccess, connectionLost, data, rawData
+ * @param  {int} heightColumn Name of event one of connectionSuccess, connectionLost, data, rawData
+ * @param  {int} margin Name of event one of connectionSuccess, connectionLost, data, rawData
  */
 const block = function (broadLeft, broadRight, height, heightColumn, margin) {
     ZPL += "^FO" + broadLeft + "," + height + "^GB" + broadRight + "," + heightColumn + "," + margin + "^FS";
