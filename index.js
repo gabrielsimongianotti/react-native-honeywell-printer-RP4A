@@ -8,7 +8,7 @@ var ZPL = "^XA ";
  * @param  {String} word Name of event one of connectionSuccess, connectionLost, data, rawData
  * @param  {int} size Name of event one of connectionSuccess, connectionLost, data, rawData
  */
-const test = function (broad, height, word, size) {
+const text = function (broad, height, word, size) {
     ZPL += " ^CF0," + size + " ^FO" + broad + "," + height + "^FD" + word + "^FS";
     return " ^CF0," + size + " ^FO" + broad + "," + height + "^FD" + word + "^FS";
 
@@ -22,9 +22,9 @@ const test = function (broad, height, word, size) {
  * @param  {int} code Name of event one of connectionSuccess, connectionLost, data, rawData
  * @param  {int} size Name of event one of connectionSuccess, connectionLost, data, rawData
  */
-const barCode = function (broad, height, positionX, positionY, code, size) {
-    ZPL += "^BY" + positionY + ",0," +positionX + " ^CF0," + size + " ^FO" + height + "," + broad + "^BC^FD" + code + "^FS";
-    return "^BY" + positionY + ",0," +positionX + " ^CF0," + size + " ^FO" + height + "," + broad + "^BC^FD" + code + "^FS";
+const barCode = function ( positionX, positionY, code) {
+    ZPL += " ^FO" + positionY + "," + positionX + "^BC^FD" + code + "^FS";
+    return " ^FO" + positionY + "," + positionX + "^BC^FD" + code + "^FS";  //"^BY" + positionY + ",0," +positionX + " ^CF0," + size + " ^FO" + height + "," + broad + "^BC^FD" + code + "^FS";
 }
 /**
  * Listen for available events
@@ -96,4 +96,4 @@ const bluetoothShow = async function () {
     // console.log(device.name)
     return device.name;    
 }
-module.exports = { test, barCode, qrCode, block, showCode, deleteCode, addCode, printerCode, bluetoothShow }
+module.exports = { text, barCode, qrCode, block, showCode, deleteCode, addCode, printerCode, bluetoothShow }

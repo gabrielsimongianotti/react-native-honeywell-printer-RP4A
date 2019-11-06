@@ -17,22 +17,30 @@ Online ZPL Viewer http://labelary.com/viewer.html
   - positionX: Position relative to the X axis
   - positionY: Position relative to the Y axis
   - code: Bar code
-  - size: size the testo
-  - word: word, testo
+  - size: size the text
+  - word: word, text
+
+  - 1 through 5 generates ZPL codes
 
   1. printer.barCode(broad, height, positionX, positionY, code, size);
+  - generate barcode ZPL code
 
-  2. printer.test(broad, heigth, word, size);
+  2. printer.text(broad, heigth, word, size);
+  - generate text ZPL code
 
   4. printer.qrCode( positionX, positionY, code);
+  - generate qrCode ZPL code
 
   5. printer.block( broad, height, positionX, positionY, code, size)
+  - generate block or line ZPL code
 
   6. console.log(printer.showCode())
+  - show the genereated ZPL code
 
+  - connect with bluetooth
   7. printer.bluetoothShow()
     .then(
-      (res) => console.log(printer.printerCode(res))
+      (res) => console.log(printer.printerCode(res)) // send code for printer
     )
     .catch((err) => console.log(err.message));
 
@@ -44,9 +52,7 @@ import printer from 'react-native-honeywell-printer-rp4a';
 
   printer.barCode(5, 270, 10, 10, 12, 70);
 
-  printer.test(500, 500, "word", 50);
-
-  printer.test(400, 400, "word", 50);
+  printer.text(500, 500, "word", 50);
 
   printer.qrCode(300, 400, "word");
 
