@@ -22,7 +22,7 @@ Online ZPL Viewer http://labelary.com/viewer.html
 
   - 1 through 5 generates ZPL codes
 
-  1. printer.barCode(broad, height, positionX, positionY, code, size);
+  1. printer.barCode( positionX, positionY, code);
   - generate barcode ZPL code
 
   2. printer.text(broad, heigth, word, size);
@@ -50,7 +50,7 @@ Online ZPL Viewer http://labelary.com/viewer.html
 ```javascript
 import printer from 'react-native-honeywell-printer-rp4a';
 
-  printer.barCode(5, 270, 10, 10, 12, 70);
+  printer.barCode( 10, 12, 70);
 
   printer.text(500, 500, "word", 50);
 
