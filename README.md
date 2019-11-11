@@ -16,7 +16,7 @@ Online ZPL Viewer http://labelary.com/viewer.html
   - height: Y axis position relative to page
   - positionX: Position relative to the X axis
   - positionY: Position relative to the Y axis
-  - code: Bar code
+  - code: ZPL code
   - size: size the text
   - word: word, text
 
@@ -31,7 +31,7 @@ Online ZPL Viewer http://labelary.com/viewer.html
   4. printer.qrCode( positionX, positionY, code);
   - generate qrCode ZPL code
 
-  5. printer.block( broad, height, positionX, positionY, code, size)
+  5. printer.block(broadLeft, broadRight, height, heightColumn, margin)
   - generate block or line ZPL code
 
   6. console.log(printer.showCode())

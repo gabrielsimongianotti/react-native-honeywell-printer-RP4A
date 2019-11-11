@@ -2,11 +2,11 @@ import BluetoothSerial from 'react-native-bluetooth-serial';
 
 var ZPL = "^XA ";
 /**
- * Listen for available events
- * @param  {int} broad Name of event one of connectionSuccess, connectionLost, data, rawData
- * @param  {int} height Name of event one of connectionSuccess, connectionLost, data, rawData
- * @param  {String} word Name of event one of connectionSuccess, connectionLost, data, rawData
- * @param  {int} size Name of event one of connectionSuccess, connectionLost, data, rawData
+ * Generate text
+ * @param  {int} broad X axis position relative to page
+ * @param  {int} height Y axis position relative to page
+ * @param  {String} word word, text
+ * @param  {int} size size the text
  */
 const text = function (broad, height, word, size) {
     ZPL += " ^CF0," + size + " ^FO" + broad + "," + height + "^FD" + word + "^FS";
@@ -14,23 +14,20 @@ const text = function (broad, height, word, size) {
 
 }
 /**
- * Listen for available events
- * @param  {int} broad Name of event one of connectionSuccess, connectionLost, data, rawData
- * @param  {int} height Name of event one of connectionSuccess, connectionLost, data, rawData
- * @param  {int} positionX Name of event one of connectionSuccess, connectionLost, data, rawDat
- * @param  {int} positionY Name of event one of connectionSuccess, connectionLost, data, rawData
- * @param  {int} code Name of event one of connectionSuccess, connectionLost, data, rawData
- * @param  {int} size Name of event one of connectionSuccess, connectionLost, data, rawData
+ * Generate barcode
+ * @param  {int} positionX Position relative to the X axis
+ * @param  {int} positionY Position relative to the Y axis
+ * @param  {int} code ZPL code
  */
 const barCode = function ( positionX, positionY, code) {
     ZPL += " ^FO" + positionY + "," + positionX + "^BC^FD" + code + "^FS";
     return " ^FO" + positionY + "," + positionX + "^BC^FD" + code + "^FS";  //"^BY" + positionY + ",0," +positionX + " ^CF0," + size + " ^FO" + height + "," + broad + "^BC^FD" + code + "^FS";
 }
 /**
- * Listen for available events
- * @param  {int} broad Name of event one of connectionSuccess, connectionLost, data, rawData
- * @param  {int} height Name of event one of connectionSuccess, connectionLost, data, rawData
- * @param  {String} code Name of event one of connectionSuccess, connectionLost, data, rawData
+ * Generate qrcode
+ * @param  {int} broad X axis position relative to page
+ * @param  {int} height Y axis position relative to page
+ * @param  {String} code ZPL code
  */
 const qrCode = function (broad, height, code) {
     ZPL += " ^FO" + broad + "," + height + " ^BQN,2,10 ^FDMM, " + code + " ^FS";
