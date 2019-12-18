@@ -20,31 +20,38 @@ Online ZPL Viewer http://labelary.com/viewer.html
   - size: size the text
   - word: word, text
 
-  - 1 through 5 generates ZPL codes
 
   1. printer.barCode( positionX, positionY, code);
   - generate barcode ZPL code
 
+
   2. printer.text(broad, heigth, word, size);
   - generate text ZPL code
+
 
   4. printer.qrCode( positionX, positionY, code);
   - generate qrCode ZPL code
 
-  5. printer.block(broadLeft, broadRight, height, heightColumn, margin)
-  - generate block or line ZPL code
+
+  5. printer.addCode(ZPL code pure)
+  - generate add ZPL code
+
 
   6. console.log(printer.showCode())
   - show the genereated ZPL code
-
   - connect with bluetooth
+
+
   7. printer.bluetoothShow()
     .then(
       (res) => console.log(printer.printerCode(res)) // send code for printer
     )
     .catch((err) => console.log(err.message));
 
+
   8. printer.deleteCode();
+
+
 
 ## Example:
 ```javascript
@@ -56,7 +63,7 @@ import printer from 'react-native-honeywell-printer-rp4a';
 
   printer.qrCode(300, 400, "word");
 
-  printer.block(150, 100, 1000, 10, 1, 1)
+  printer.addCode("^CFA,30 ^FO50,300^FDJohn Doe^FS");
 
   console.log(printer.showCode())
 
