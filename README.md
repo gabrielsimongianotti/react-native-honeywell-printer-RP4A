@@ -6,7 +6,7 @@ Online ZPL Viewer http://labelary.com/viewer.html
 
 
 ## Installation
-1. Install package via npm: `npm i -S react-native-honeywell-printer-RP4A`
+1. Install package via npm: `npm i react-native-honeywell-printer-rp4a`
 
 2. Link libraries with: `rnpm link` or `react-native link` for React Native >= 0.27
 
