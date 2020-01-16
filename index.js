@@ -14,12 +14,20 @@ const text = function (broad, height, word, size) {
 
 }
 /**
+ * size the tag 
+ * @param  {int} size size the tag
+ */
+const tagSize = function (size) {
+    var ZPL = "^XA  ^LL" + size;
+    return "^XA  ^LL" + size;
+}
+/**
  * Generate barcode
  * @param  {int} positionX Position relative to the X axis
  * @param  {int} positionY Position relative to the Y axis
  * @param  {int} code ZPL code
  */
-const barCode = function ( positionX, positionY, code) {
+const barCode = function (positionX, positionY, code) {
     ZPL += " ^FO" + positionY + "," + positionX + "^BC^FD" + code + "^FS";
     return " ^FO" + positionY + "," + positionX + "^BC^FD" + code + "^FS";  //"^BY" + positionY + ",0," +positionX + " ^CF0," + size + " ^FO" + height + "," + broad + "^BC^FD" + code + "^FS";
 }
@@ -62,7 +70,7 @@ const deleteCode = function () {
  * Add code ZPL
  */
 const addCode = function (codeZPL) {
-    ZPL = codeZPL;
+    ZPL += codeZPL;
     return ZPL;
 }
 /**
@@ -72,17 +80,17 @@ const printerCode = async function (namePrinter) {
     const devices = await BluetoothSerial.list();
     // console.log(ZPL);
     const device = devices.find(device => device.name.includes(namePrinter));
-    var answer ="erro";
+    var answer = "erro";
     // console.log(device);
     BluetoothSerial.connect(device.id)
-      .then((res) => {
-        console.log(`Connected to device ${device.name}`);
-        BluetoothSerial.write(ZPL+ " ^XZ")
-          .then((res1) => console.log(res1))
-          .catch((err) => console.log(err.message));
-      }).catch((err) => console.log(err.message));
+        .then((res) => {
+            console.log(`Connected to device ${device.name}`);
+            BluetoothSerial.write(ZPL + " ^XZ")
+                .then((res1) => console.log(res1))
+                .catch((err) => console.log(err.message));
+        }).catch((err) => console.log(err.message));
 
-      return answer;
+    return answer;
 }
 /**
  * bluetoothShow
@@ -91,6 +99,6 @@ const bluetoothShow = async function () {
     const devices = await BluetoothSerial.list();
     const device = devices.find(device => device.name);
     // console.log(device.name)
-    return device.name;    
+    return device.name;
 }
-module.exports = { text, barCode, qrCode, block, showCode, deleteCode, addCode, printerCode, bluetoothShow }
+module.exports = {tagSize, text, barCode, qrCode, block, showCode, deleteCode, addCode, printerCode, bluetoothShow }

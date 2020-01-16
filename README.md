@@ -18,6 +18,7 @@ Online ZPL Viewer http://labelary.com/viewer.html
   - positionY: Position relative to the Y axis
   - code: ZPL code
   - size: size the text
+  - sizeTag: size of tag
   - word: word, text
 
 
@@ -51,11 +52,15 @@ Online ZPL Viewer http://labelary.com/viewer.html
 
   8. printer.deleteCode();
 
+  9. printer.tagSize(sizeTag);
+
 
 
 ## Example:
 ```javascript
 import printer from 'react-native-honeywell-printer-rp4a';
+
+  printer.tagSize( 300);
 
   printer.barCode( 10, 12, 70);
 
