@@ -18,7 +18,7 @@ const text = function (broad, height, word, size) {
  * @param  {int} size size the tag
  */
 const tagSize = function (size) {
-    var ZPL = "^XA  ^LL" + size;
+    ZPL = "^XA  ^LL" + size;
     return "^XA  ^LL" + size;
 }
 /**
