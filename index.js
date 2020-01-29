@@ -78,19 +78,11 @@ const addCode = function (codeZPL) {
  */
 const printerCode = async function (namePrinter) {
     const devices = await BluetoothSerial.list();
-    // console.log(ZPL);
     const device = devices.find(device => device.name.includes(namePrinter));
-    var answer = "erro";
-    // console.log(device);
     BluetoothSerial.connect(device.id)
         .then((res) => {
-            console.log(`Connected to device ${device.name}`);
             BluetoothSerial.write(ZPL + " ^XZ")
-                .then((res1) => console.log(res1))
-                .catch((err) => console.log(err.message));
-        }).catch((err) => console.log(err.message));
-
-    return answer;
+        })
 }
 /**
  * bluetoothShow
@@ -98,7 +90,6 @@ const printerCode = async function (namePrinter) {
 const bluetoothShow = async function () {
     const devices = await BluetoothSerial.list();
     const device = devices.find(device => device.name);
-    // console.log(device.name)
     return device.name;
 }
 module.exports = {tagSize, text, barCode, qrCode, block, showCode, deleteCode, addCode, printerCode, bluetoothShow }
