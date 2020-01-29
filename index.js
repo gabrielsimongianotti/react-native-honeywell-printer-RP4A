@@ -76,20 +76,18 @@ const addCode = function (codeZPL) {
 /**
  * printerCode
  */
-const printerCode = async function (namePrinter) {
+const printerCode = async function () {
     const devices = await BluetoothSerial.list();
-    const device = devices.find(device => device.name.includes(namePrinter));
-    BluetoothSerial.connect(device.id)
-        .then((res) => {
-            BluetoothSerial.write(ZPL + " ^XZ")
-        })
+    const device = devices.find(device => device.name);
+    await BluetoothSerial.connect(device.id)
+        .then((res) => BluetoothSerial.write(ZPL + " ^XZ")).catch(e => { printerCode() })
 }
 /**
  * bluetoothShow
  */
 const bluetoothShow = async function () {
     const devices = await BluetoothSerial.list();
-    const device = devices.find(device => device.name);
-    return device.name;
+    const device = await devices.find(device => device.name);
+    return device;
 }
-module.exports = {tagSize, text, barCode, qrCode, block, showCode, deleteCode, addCode, printerCode, bluetoothShow }
+module.exports = { tagSize, text, barCode, qrCode, block, showCode, deleteCode, addCode, printerCode, bluetoothShow }

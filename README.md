@@ -72,12 +72,8 @@ import printer from 'react-native-honeywell-printer-rp4a';
 
   console.log(printer.showCode())
 
-  printer.bluetoothShow()
-    .then((res) =>
-      console.log(printer.printerCode(res))
-      )
-    .catch((err) =>
-      console.log(err.message)
-      );
+  printer.bluetoothShow().then((res) => console.log(res))
+  
+  printer.printerCode()
 
 ```
