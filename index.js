@@ -76,18 +76,63 @@ const addCode = function (codeZPL) {
 /**
  * printerCode
  */
-const printerCode = async function () {
+const printerCode = async function (int=0) {
     const devices = await BluetoothSerial.list();
-    const device = devices.find(device => device.name);
-    await BluetoothSerial.connect(device.id)
-        .then((res) => BluetoothSerial.write(ZPL + " ^XZ")).catch(e => { printerCode() })
+    const deviceSelect = await devices.find(device => device.name);
+
+    try{
+      await BluetoothSerial.connect(deviceSelect.id);
+      const connect = await printConnection()
+      console.log("connect", connect);
+      if(connect){
+        const response = await print();
+        console.log("k",response)
+        if (response) return true;
+
+        return false;
+      } else{
+        return false;
+      }
+    }
+    catch{
+        
+      if(int<1){
+        return printerCode(int+1)
+      }
+        
+      return true;
+    }
 }
 /**
  * bluetoothShow
  */
 const bluetoothShow = async function () {
     const devices = await BluetoothSerial.list();
-    const device = await devices.find(device => device.name);
-    return device;
+   
+    const deviceSelect = await devices.find(device => device.name);
+   
+    return deviceSelect;
 }
+
+
+const print = () => {
+ 
+    return new Promise((resolve, reject) => {
+        BluetoothSerial
+        .write(ZPL + " ^XZ")
+        .then(response => resolve(response))
+        .catch(error => reject(error));
+    });
+};
+
+const printConnection = () => {
+ 
+  return new Promise((resolve, reject) => {
+    BluetoothSerial
+    .isConnected()
+    .then(response => resolve(response))
+    .catch(error => reject(error));
+  });
+};
+
 module.exports = { tagSize, text, barCode, qrCode, block, showCode, deleteCode, addCode, printerCode, bluetoothShow }
