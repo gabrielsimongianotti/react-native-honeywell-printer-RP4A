@@ -1,5 +1,7 @@
 # react-native-honeywell-printer-RP4A
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0279409f9694473b9251922d64a2e268)](https://app.codacy.com/manual/gabrielsimongianotti/react-native-honeywell-printer-RP4A?utm_source=github.com&utm_medium=referral&utm_content=gabrielsimongianotti/react-native-honeywell-printer-RP4A&utm_campaign=Badge_Grade_Settings)
+
 react-native link react-native-bluetooth-serial
 
 Online ZPL Viewer http://labelary.com/viewer.html
